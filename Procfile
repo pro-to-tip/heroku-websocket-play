@@ -1,2 +1,2 @@
 web: herokuplay
-runner: cmd/runner/runner
+worker: cmd/runner/runner
