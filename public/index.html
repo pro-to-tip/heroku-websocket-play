@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Sample of websocket with golang</title>
+		<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script>
+
+        $(function() {
+          var ws = new WebSocket("ws://" + location.host + "/ws");
+          ws.onmessage = function(event) {
+          console.log("Received : " + event.data);
+          var obj = JSON.parse(event.data);
+          console.log("Received event.data.author : " + obj.author);
+
+          var $ul = $('#msg-list');
+          var text = obj.created_at + ' | ' + obj.author + ' : ' + obj.body;
+          $('<li>').text(text).appendTo($ul);
+        };
+
+        $('#sendBtn').click(function(){
+          var name = $('#name').val();
+          var text = $('#message').val();
+
+          var msg = '{"author": "' + name + '", "body": "' + text + '"}';
+          ws.send(msg);
+          console.log("Sending : " + msg);
+          $('#message').val('');
+          $('#message').focus();
+        });
+      });
+		</script>
+	</head>
+	<body>
+      <div>
+		Name : <input id="name" placeholder="Name" type="text" />
+      </div>
+      <div>
+	    Message : <input id="message" placeholder="Message" type="text" />
+		<input type="button" id="sendBtn" value="send"></input>
+      </div>
+      <ul id="msg-list"></ul>
+	</body>
+</html>
