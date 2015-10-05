@@ -61,12 +61,6 @@ func (s *Server) Err(err error) {
 	s.errCh <- err
 }
 
-// func (s *Server) sendPastMessages(c *Client) {
-// 	for _, msg := range s.messages {
-// 		c.Write(msg)
-// 	}
-// }
-
 func (s *Server) sendAll(msg *Message) {
 	for _, c := range s.clients {
 		c.Write(msg)
@@ -104,7 +98,6 @@ func (s *Server) Listen() {
 			log.Println("Added new client")
 			s.clients[c.id] = c
 			log.Println("Now", len(s.clients), "clients connected.")
-			// s.sendPastMessages(c)
 
 		// del a client
 		case c := <-s.delCh:
