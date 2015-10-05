@@ -3,9 +3,8 @@
 	"GoVersion": "go1.5.1",
 	"Deps": [
 		{
-			"ImportPath": "code.google.com/p/go.net/websocket",
-			"Comment": "null-240",
-			"Rev": "937a34c9de13c766c814510f76bca091dee06028"
+			"ImportPath": "golang.org/x/net/websocket",
+			"Rev": "01256db42e5106196a3473ec1620727a383500e8"
 		}
 	]
 }
